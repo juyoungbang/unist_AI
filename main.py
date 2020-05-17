@@ -27,7 +27,7 @@ def checkID():
                             "blockId" : "5ebfffaed30dd70001af2557"
                         },
                         {
-                            "messageText" : "Yes",
+                            "messageText" : "No",
                             "label" : "No",
                             "action" : "block",
                             "blockId" : "5ec14e73d30dd70001af27b5"
