@@ -7,7 +7,7 @@ app = Flask(__name__)
 def checkID():
     req = request.get_json()
     userID = req["userRequest"]["user"]["properties"]["plusfriendUserKey"]
- 
+    print(userID)
     user_info = pd.read_csv("user_info.csv", index_col=0)
     if userID in user_info.index:
         res = { "version" : "2.0",
@@ -15,7 +15,7 @@ def checkID():
                     "outputs" : [
                         {
                             "simpleText" : {
-                                "text" : "Are you " + user_info.loc[userID, "NAME"] + " from " + user_info.loc[userID, "REGION"] + "?" 
+                                "text" : "Are you " + user_info.loc[userID, "NAME"] + " in " + user_info.loc[userID, "REGION"] + "?" 
                             }
                         }
                     ],
@@ -33,7 +33,6 @@ def checkID():
                             "blockId" : "5ec14e73d30dd70001af27b5"
                         }                        
                     ]
-
                 }
         }
         
@@ -44,7 +43,7 @@ def checkID():
                     "outputs" : [
                         {
                             "simpleText" : {
-                                "text" : "You are not verified."
+                                "text" : "You are not a verified user."
                             }
                         }
                     ]
@@ -68,13 +67,48 @@ def generate_schedule():
                             "text" : "Welcome, " + user_info.loc[userID, "NAME"] + ". Your schedule is being generated. It can take up to 3 minutes."
                         }
                     }
-                ]
-                
-            },
+                ],
+                "quickReplies" : [
+                    {
+                        "messageText" : "Continue",
+                        "label" : "Continue",
+                        "action" : "block",
+                        "blockId" : "5ebfffcf1276c30001314792"
+                    },
+                    {
+                        "messageText" : "Quit",
+                        "label" : "Quit",
+                        "action" : "block",
+                        "blockId" : "5ec20f34031ba40001167126"
+                    }                        
+                ]               
+            }
     }
     
     return jsonify(res)
 
+@app.route("/scheduling/continue", methods=["POST"])
+def continue_():
+    req = request.get_json()
+    
+    res = { "version" : "2.0",
+            "template" : { 
+                "outputs" : [
+                    {
+                        "simpleText" : {
+                            "text" : "Thank you for your patience."
+                        },
+                        "simpleImage" : {
+                            "imageUrl" : "example_image.png",
+                            "altText" : "Schedule Overview"
+                        }
+                    }
+                ],
+                              
+            }
+    }
+    
+    return jsonify(ResourceWarning)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
