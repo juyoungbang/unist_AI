@@ -90,6 +90,7 @@ def generate_schedule():
 @app.route("/scheduling/continue", methods=["POST"])
 def continue_():
     req = request.get_json()
+    userID = req["userRequest"]["user"]["properties"]["plusfriendUserKey"] 
     
     res = { "version" : "2.0",
             "template" : { 
@@ -97,9 +98,11 @@ def continue_():
                     {
                         "simpleText" : {
                             "text" : "Thank you for your patience."
-                        },
+                        }
+                    },
+                    {
                         "simpleImage" : {
-                            "imageUrl" : "example_image.png",
+                            "imageUrl" : "https://github.com/juyoungbang/unist_AI/blob/master/example_image.png?raw=true",
                             "altText" : "Schedule Overview"
                         }
                     }
@@ -108,7 +111,7 @@ def continue_():
             }
     }
     
-    return jsonify(ResourceWarning)
+    return jsonify(res)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
