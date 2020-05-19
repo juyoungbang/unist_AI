@@ -8,7 +8,8 @@ def _generate_schedule(userID):
                "outputs": [
                    {
                        "basicCard": {
-                           "title": "Welcome, "+user_info.loc[userID, "NAME"]+". Your schedule is being generated. It can take up to 3 minutes",
+                           "title": "Welcome, "+user_info.loc[userID, "NAME"]+"!",
+                           "description": "Your schedule is being generated. It can take up to 3 minutes.",
                            "buttons": [
                                {
                                    "label" : "Continue",
@@ -28,7 +29,7 @@ def _generate_schedule(userID):
     
     return res
 
-def _continue_scheduling(userID)
+def _continue_scheduling(userID):
     res = {"version" : "2.0",
            "template": { 
                "outputs": [
@@ -39,3 +40,5 @@ def _continue_scheduling(userID)
                    }
                 ]              
             }}
+    
+    return res
