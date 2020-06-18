@@ -1,8 +1,28 @@
-# Client Section
+# UI Section
 
+The server can be started by running main.py.
 
+- main.py
+- scheduling.py
+- verification.py
+These three files communicate with the Kakaotalk channel and sends the required responses. The detailed information about Kakaotalk API can be found at https://i.kakao.com/docs/skill-response-format#skillpayload.
 
---------
+- user_info.csv
+This file includes information about the drivers that are currently registered to our service. The file will refuse the schedule request if the driver is not registered in this file.
+
+- etc
+This directory includes images that are required when sending responses to the Kakaotalk channel.
+
+- downward_package
+This directory includes the source codes of Fast Downward. Note that some of the files of Fast Downward are not pushed to this git due to memory limitation problem.
+
+- solver/location_mapping.csv
+For making the situation simple in the demo, we made a simple coordinate system of 10*20 to locate stores and customers. However, to show how our service provides the solutions using Kakao Map, we needed some actual locations. To remove this gap, we defined this location mapping file which maps each locations in the original 10*20 coordinate to an actual location. 
+
+-solver/data_rapping.py
+This file reads the planning result and reformats it in a way that the Kakaotalk API can understand.
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 # AI Planning Section
 
@@ -48,9 +68,3 @@ transform_plan(plan_path, menu_path, order_path, input_num)
 ```
 
 System will send kakaotalk messages to driver with that csv result.
-
-
-
- 
-
- 
