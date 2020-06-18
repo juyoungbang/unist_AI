@@ -13,7 +13,7 @@ def _checkID(userID):
                                "title": user_info.loc[userID, "NAME"]+"("+user_info.loc[userID, "REGION"]+")",
                                "description": "Is this your profile?",
                                "thumbnail": {
-                                   "imageUrl": "https://github.com/juyoungbang/unist_AI/blob/master/"+user_info.loc[userID, "AFFILIATION"]+".png?raw=true"
+                                   "imageUrl": "https://github.com/juyoungbang/unist_AI/blob/master/etc/"+user_info.loc[userID, "AFFILIATION"]+".png?raw=true"
                                },
                                "buttons": [
                                    {

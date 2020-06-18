@@ -55,6 +55,7 @@ def transform_plan(plan_path, menu_path, order_path, input_num):
             plan.append(s)
 
     table = convert_table(plan, location)
+    table = table.set_index('x')
     
     table.to_csv(f'/workspace/d_avengers/solver/results/plan{input_num}.csv')
 

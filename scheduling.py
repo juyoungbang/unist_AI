@@ -33,15 +33,15 @@ def _generate_schedule(userID):
 def _continue_scheduling(userID):
     res = {"version": "2.0",
            "template": {
-               "outputs": format_fplan(userID, 1)
+               "outputs": format_fplan(userID, 3)
            }}
 
     return res
 
 def _next_schedule(userID):
-      res = {"version": "2.0",
+    res = {"version": "2.0",
            "template": {
-               "outputs": format_nplan(userID, 1)
+               "outputs": format_nplan(userID, 3)
            }}
 
     return res  

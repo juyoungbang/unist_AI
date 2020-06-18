@@ -33,21 +33,89 @@ def orders_format(l_map, input_num):
    
     return orders
 
-def plan_fplan(userID, input_num):
+def format_fplan(userID, input_num):
     run_all(input_num)
-    
+
     user_info = pd.read_csv("/workspace/d_avengers/user_info.csv", index_col=0)
     l_map = pd.read_csv("/workspace/d_avengers/solver/location_mapping.csv")
-    plan = pd.read_csv(f"/workspace/d_avengers/solver/results/plan{input_num}.csv")  
-    
-    outputs = []      
+    plan = pd.read_csv(f"/workspace/d_avengers/solver/results/plan{input_num}.csv")
+
+    outputs = []
     outputs.extend(orders_format(l_map, input_num))
 
-    for i in range(math.ceil(len(plan)/5)-1):
+    items = []
+    for i in range(5):
+        msg = ''
+        if plan.iloc[i, 3] == "pick-up":
+            msg = f"Pick up {plan.iloc[i, 4]} order(s)."
+        else:
+            msg = f"Deliver order(s)."
+
+        loc_id = l_map[(l_map['IN_X'] == plan.iloc[i, 0]) & (l_map['IN_Y'] == plan.iloc[i, 1])].iloc[0, 2]
+        loc_nm = l_map[(l_map['IN_X'] == plan.iloc[i, 0]) & (l_map['IN_Y'] == plan.iloc[i, 1])].iloc[0, 3]
+
+        action = {"title": f"{loc_nm}",
+                  "description": msg,
+                  "link": {"web": f"https://map.kakao.com/link/to/{loc_id}"}}
+        items.append(action)
+
+    listCard = {
+                   "listCard": {
+                       "header": {
+                           "title": "Recommended Schedule(1)"
+                       },
+                       "items": items
+                   }
+               }
+    outputs.append(listCard)
+
+    items = []
+    for i in range(5, 10):
+        msg = ''
+        if plan.iloc[i, 3] == "pick-up":
+            msg = f"Pick up {plan.iloc[i, 4]} order(s)."
+        else:
+            msg = f"Deliver order(s)."
+       
+        loc_id = l_map[(l_map['IN_X'] == plan.iloc[i, 0]) & (l_map['IN_Y'] == plan.iloc[i, 1])].iloc[0, 2]
+        loc_nm = l_map[(l_map['IN_X'] == plan.iloc[i, 0]) & (l_map['IN_Y'] == plan.iloc[i, 1])].iloc[0, 3]
+
+        action = {"title": f"{loc_nm}",
+                  "description": msg,
+                  "link": {"web": f"https://map.kakao.com/link/to/{loc_id}"}}
+        items.append(action)
+
+    listCard = {
+               "listCard": {
+                   "header": {
+                       "title": "Recommended Schedule(2)"
+                   },
+                   "items": items,
+                   "buttons": [
+                       {
+                           "label": "Next",
+                           "action": "block",
+                           "blockId": "5eeafbef501c670001e5378a"
+                       }
+                   ]
+               }
+           }
+    outputs.append(listCard)
+
+    return outputs
+
+def format_nplan(userID, input_num):
+    user_info = pd.read_csv("/workspace/d_avengers/user_info.csv", index_col=0)
+    l_map = pd.read_csv("/workspace/d_avengers/solver/location_mapping.csv")
+    plan = pd.read_csv(f"/workspace/d_avengers/solver/results/plan{input_num}.csv", index_col=0)
+
+    outputs = []
+
+    for i in range(2):
         items = []
         for j in range(5):
             msg = ''
-            if plan.iloc[5*i+j, 3] == "pick_up":
+            if plan.iloc[5*i+j, 3] == "pick-up":
                 msg = f"Pick up {plan.iloc[5*i+j, 4]} order(s)."
             else:
                 msg = f"Deliver order(s)."
@@ -63,18 +131,18 @@ def plan_fplan(userID, input_num):
         listCard = {
                        "listCard": {
                            "header": {
-                               "title": f"Recommended Schedule({i+1})"
+                               "title": f"Recommended Schedule({i+3})"
                            },
                            "items": items
                        }
                    }
         outputs.append(listCard)
-        
+
     items = []
-    i = math.ceil(len(plan)/5)-1
+    i = 2
     for j in range(len(plan)-5*i):
         msg = ''
-        if plan.iloc[5*i+j, 3] == "pick_up":
+        if plan.iloc[5*i+j, 3] == "pick-up":
             msg = f"Pick up {plan.iloc[5*i+j, 4]} order(s)."
         else:
             msg = f"Deliver order(s)."
@@ -90,7 +158,7 @@ def plan_fplan(userID, input_num):
     listCard = {
                "listCard": {
                    "header": {
-                       "title": f"Recommended Schedule({i+1})"
+                       "title": f"Recommended Schedule({i+3})"
                    },
                    "items": items,
                    "buttons": [
@@ -104,7 +172,4 @@ def plan_fplan(userID, input_num):
            }
     outputs.append(listCard)
 
-    return outputs  
-
-def format_nplan(userID, input_num):
-    
+    return outputs
