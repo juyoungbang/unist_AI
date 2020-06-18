@@ -1,5 +1,5 @@
 from verification import _checkID, _no
-from scheduling import _generate_schedule, _continue_scheduling
+from scheduling import _generate_schedule, _continue_scheduling, _next_schedule
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -9,6 +9,8 @@ app = Flask(__name__)
 def checkID():
     req = request.get_json()
     userID = req["userRequest"]["user"]["properties"]["plusfriendUserKey"]
+
+    print(f"{userID} attemted to access service.")
     res = _checkID(userID)
 
     return jsonify(res)
@@ -28,7 +30,7 @@ def generate_schedule():
     req = request.get_json()
     userID = req["userRequest"]["user"]["properties"]["plusfriendUserKey"]
     res = _generate_schedule(userID)
-    
+
     return jsonify(res)
 
 
@@ -40,6 +42,15 @@ def continue_scheduling():
 
     return jsonify(res)
 
+@app.route("/scheduling/next", methods=["POST"])
+def next_schedule():
+    req = request.get_json()
+    userID = req["userRequest"]["user"]["properties"]["plusfriendUserKey"] 
+    res = _next_schedule(userID)
+
+    return jsonify(res)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
+    print("Server Running...")

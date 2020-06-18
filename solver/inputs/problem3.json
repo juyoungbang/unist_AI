@@ -1,0 +1,41 @@
+{
+  "req_id": "fromPddlBuilder2",
+  "requests": {
+    "c1": {
+      "location": [ 2, 3 ],
+      "orders": [
+        {
+          "menu": "Fruit",
+          "qty": 2
+        }
+      ]
+    },
+    "c2": {
+      "location": [ 8, 1 ],
+      "orders": [
+        {
+          "menu": "Burger",
+          "qty": 1
+        },
+        {
+          "menu": "Pizza",
+          "qty": 1
+        }
+      ]
+    },
+    "c3": {
+      "location": [ 1, 2 ],
+      "orders": [
+        {
+          "menu": "Sauce",
+          "qty": 2
+        },
+        {
+          "menu": "Pizza",
+          "qty": 1
+        }
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,40 @@
+[
+  {
+    "name": "s0",
+    "menu": "Stake",
+    "location": [ 1, 10 ]
+  },
+  {
+    "name": "s1",
+    "menu": "Burger",
+    "location": [ 5, 4 ]
+  },
+  {
+    "name": "s2",
+    "menu": "Chicken",
+    "location": [ 3, 18 ]
+  },
+  {
+    "name": "s3",
+    "menu": "Juice",
+    "location": [ 2, 1 ]
+  },
+  {
+    "name": "s4",
+    "menu": "Sauce",
+    "location": [ 9, 7 ]
+  },
+
+  {
+    "name": "s5",
+    "menu": "Pizza",
+    "location": [ 7, 2 ]
+  },
+
+  {
+    "name": "s6",
+    "menu": "Fruit",
+    "location": [ 5, 13 ]
+  }
+]
+

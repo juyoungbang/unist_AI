@@ -1,0 +1,63 @@
+{
+  "req_id": "fromPddlBuilder3",
+  "requests": {
+    "c1": {
+      "location": [ 9, 10 ],
+      "orders": [
+        {
+          "menu": "Fruit",
+          "qty": 3
+        },
+        {
+          "menu": "Juice",
+          "qty": 2
+        }
+      ]
+    },
+    "c2": {
+      "location": [ 9, 9 ],
+      "orders": [
+        {
+          "menu": "Burger",
+          "qty": 1
+        }
+      ]
+    },
+    "c3": {
+      "location": [ 9, 8 ],
+      "orders": [
+        {
+          "menu": "Chicken",
+          "qty": 1
+        }
+      ]
+    },
+    "c4": {
+      "location": [ 1, 1 ],
+      "orders": [
+        {
+          "menu": "Sauce",
+          "qty": 2
+        },
+        {
+          "menu": "Pizza",
+          "qty": 2
+        }
+      ]
+    },
+    "c5": {
+      "location": [ 1, 2 ],
+      "orders": [
+        {
+          "menu": "Pizza",
+          "qty": 2
+        },
+        {
+          "menu": "Stake",
+          "qty": 2
+        }
+      ]
+    }
+  }
+}
+

@@ -46,17 +46,17 @@ def _checkID(userID):
                }}
 
         return res
-    
-    
+
+
 def _no(userID):
     user_info = pd.read_csv("user_info.csv", index_col=0)
-    
+
     res = {"version": "2.0",
            "template": {
                "outputs": [
                    {
                        "basicCard": {
-                           "title": "Contact your affiliation to resolve your problem.",
+                           "title": "Contact your affiliation to resolve the problem.",
                            "buttons": [
                                {
                                    "action": "phone",

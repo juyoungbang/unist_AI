@@ -1,0 +1,47 @@
+{
+    "move": {
+        "name": "move",
+        "args": ["x", "y"],
+        "precondition": [
+            {"name": "ROOM", "args": ["x"], "option": "and"},
+            {"name": "ROOM", "args": ["y"], "option": "and"}
+        ],
+        "effect": [
+            {"name": "at-robby", "args": ["y"], "option": "and"},
+            {"name": "at_robby", "args": ["x"], "option": "and", "flag":"not"}
+        ]
+    },
+
+    "pick_up": {
+        "name": "pick_up",
+        "args": ["x", "y", "z"],
+        "precondition": [
+            {"name": "BALL", "args": ["x"], "option": "and"},
+            {"name": "ROOM", "args": ["y"], "option": "and"},
+            {"name": "GRIPPER", "args": ["z"], "option": "and"},
+            {"name": "at_robby", "args": ["y"], "option": "and"}
+        ],
+        "effect": [
+            {"name": "carry", "args": ["z", "x"], "option": "and"},
+            {"name": "at_ball", "args": ["x", "y"], "option": "and", "flag":"not"},
+            {"name": "free", "args": ["z"], "option": "and", "flag":"not"}
+        ]
+    },
+
+    "drop": {
+        "name": "drop",
+        "args": ["x", "y", "z"],
+        "precondition": [
+            {"name": "BALL", "args": ["x"], "option": "and"},
+            {"name": "ROOM", "args": ["y"], "option": "and"},
+            {"name": "GRIPPER", "args": ["z"], "option": "and"},
+            {"name": "carry", "args": ["z", "x"], "option": "and"},
+            {"name": "at_robby", "args": ["y"], "option": "and"}
+        ],
+        "effect": [
+            {"name": "at_ball", "args": ["x", "y"], "option": "and"},
+            {"name": "free", "args": ["z"], "option": "and"},
+            {"name": "carry", "args": ["z", "x"], "option": "and", "flag":"not"}
+        ]
+    }
+}
