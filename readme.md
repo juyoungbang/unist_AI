@@ -30,6 +30,7 @@ $ downward_package/fast-downward.py domain.pddl problem1.pddl --search "astar(lm
 
 # Implementation
 **Path Generation Section**
+
 When the list of orders come in to the server, it should be in the format given in solver/inputs/problem1.json. This json file will be converted to a PDDL format file by the following code.
 ```sh
 $ base_dir = pathlib.Path().absolute()
@@ -45,6 +46,7 @@ $ builder.export()
 The converted file will be in the format given in solver/inputs/problem1.pddl. Then the Fast Downward algorithm will be executed using the script in solver/run_fd.sh. The result file will be generated in solver/results/sas_plan. The sas_plan file can not be used directly, so it is again transformed to the format of our system.The transformed file will be generated in solver/results/plan1.csv.
 
 **User Interface Section**
+
 The generated path information is send to users using Kakaotalk. To enable this, the server has to be started by running main.py.
 
 These three files communicate with the Kakaotalk channel and sends the required responses. The detailed information about Kakaotalk API can be found at https://i.kakao.com/docs/skill-response-format#skillpayload.
