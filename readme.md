@@ -33,15 +33,15 @@ $ downward_package/fast-downward.py domain.pddl problem1.pddl --search "astar(lm
 
 When the list of orders come in to the server, it should be in the format given in solver/inputs/problem1.json. This json file will be converted to a PDDL format file by the following code.
 ```sh
-$ base_dir = pathlib.Path().absolute()
-$ save_dir = os.path.join(base_dir, 'solver', 'results')
-$ import_dir = os.path.join(base_dir, 'solver', 'inputs')
+base_dir = pathlib.Path().absolute()
+save_dir = os.path.join(base_dir, 'solver', 'results')
+import_dir = os.path.join(base_dir, 'solver', 'inputs')
 
-$ with open(os.path.join(import_dir, f'problem{input_num}.json')) as fp:
-$     test_data = json.load(fp)['requests']
+with open(os.path.join(import_dir, f'problem{input_num}.json')) as fp:
+    test_data = json.load(fp)['requests']
     
-$ builder = ProblemFile(f"problem{input_num}", import_dir, import_dir, test_data)
-$ builder.export()
+builder = ProblemFile(f"problem{input_num}", import_dir, import_dir, test_data)
+builder.export()
 ```
 The converted file will be in the format given in solver/inputs/problem1.pddl. Then the Fast Downward algorithm will be executed using the script in solver/run_fd.sh. The result file will be generated in solver/results/sas_plan. The sas_plan file can not be used directly, so it is again transformed to the format of our system.The transformed file will be generated in solver/results/plan1.csv.
 
