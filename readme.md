@@ -11,7 +11,7 @@ In this project, Fast Downward package was used. Fast Downward is a free softwar
 The source code of Fast Downward does not have to be manually downloaded since it is already included in this project. Still, the following requirements need to be satisfied for running this project.
 
 - Python >= 3.6
-- Mercurial bersion control system
+- Mercurial version control system
 - C++11 compiler
 - CMake
 - GNU make
